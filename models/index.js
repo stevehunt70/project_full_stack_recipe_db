@@ -1,3 +1,6 @@
+const Sequelize = require("sequelize");
+const sequelize = require("./config/connection");
+
 // import all models
 const Category = require("./Category");
 const Ingredient = require("./Ingredient");
