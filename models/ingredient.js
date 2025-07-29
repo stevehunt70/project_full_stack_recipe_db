@@ -1,11 +1,15 @@
 const { Model, DataTypes } = require("sequelize");
-
 const sequelize = require("../config/connection");
 
-class Category extends Model {}
+class Ingredient extends Model {}
 
-Category.init(
+Ingredient.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -13,12 +17,12 @@ Category.init(
   },
   {
     sequelize,
-    timestamps: false,
-    freezeTableName: true,
+    modelName: "ingredient",
     underscored: true,
-    modelName: "categories",
+    freezeTableName: true,
+    timestamps: false,
   }
 );
 
 // Export Post model
-module.exports = Category;
+module.exports = Ingredient;

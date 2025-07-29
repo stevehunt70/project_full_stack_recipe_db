@@ -42,7 +42,8 @@ VALUES (
     'Caesar Salad',
     'Classic Caesar with romaine,croutons, and creamy dressing.',
     10,
-    2,4
+    2,
+    4
 ),
 (
     'Guacamole',
@@ -71,7 +72,6 @@ INSERT INTO ingredients (name) VALUES
     ('Tomato paste'),          -- 15
     ('Crushed tomatoes'),      -- 16
     ('Olive oil'),             -- 17
-    ('Salt'),                  -- Already exists as id=5
     ('Black pepper'),          -- 18
     ('Broccoli florets'),  -- 19
     ('Carrot'),            -- 20
@@ -138,7 +138,7 @@ INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity, unit) VALUES
     (6, 35, '2', 'tablespoons, finely chopped'),
     (6, 36, '1', 'tablespoon, chopped'),
     (6, 37, '1', 'small, diced'),
-    (6, 5, '1/2', 'teaspoon'); -- salt
+    (6, 5, '1/2', 'teaspoon');
 
 
 INSERT INTO instructions (recipe_id, step_number, instruction) VALUES

@@ -1,4 +1,5 @@
-create database if not exists recipe_db;
+DROP DATABASE recipe_db;
+CREATE DATABASE recipe_db;
 
 use recipe_db;
 
@@ -47,3 +48,9 @@ CREATE TABLE instructions (
     FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
 );
 
+-- Table: Users
+CREATE TABLE users (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	email VARCHAR(50) NOT NULL,
+	password VARCHAR(50) NOT NULL
+);

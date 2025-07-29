@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Recipe</title></head>
+<body>
+  <h1>Add Recipe</h1>
+  <form id="add-form">
+    <label>Title: <input name="title" /></label><br />
+    <label>Description: <input name="description" /></label><br />
+    <label>Cooking Time (mins): <input name="cooking_time_minutes" type="number" /></label><br />
+    <label>Servings: <input name="servings" type="number" /></label><br />
+    <label>Category ID: <input name="category_id" type="number" /></label><br />
+    <button type="submit">Add</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("add-form");
+    const token = localStorage.getItem("token");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      await fetch("/api/recipes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+      });
+      window.location.href = "recipes.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Recipe</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+
+  <h1>Add New Recipe</h1>
+
+  <form action="/submit-recipe" method="POST">
+
+    <label for="title">Recipe Title:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="3"></textarea>
+
+    <div class="inline">
+      <div>
+        <label for="category">Category:</label>
+        <select id="category" name="category_id" required>
+          <option value="">--Select--</option>
+          <option value="1">Dessert</option>
+          <option value="2">Main Course</option>
+          <option value="3">Breakfast</option>
+          <option value="4">Appetizer</option>
+          <option value="5">Side Dish</option>
+        </select>
+      </div>
+      <div>
+        <label for="cooking_time">Cooking Time (minutes):</label>
+        <input type="number" id="cooking_time" name="cooking_time_minutes" required>
+      </div>
+      <div>
+        <label for="servings">Servings:</label>
+        <input type="number" id="servings" name="servings" required>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients (3 examples)</h3>
+      <div class="inline">
+        <div>
+          <label>Ingredient Name:</label>
+          <input type="text" name="ingredient_name[]">
+        </div>
+        <div>
+          <label>Quantity:</label>
+          <input type="text" name="quantity[]">
+        </div>
+        <div>
+          <label>Unit:</label>
+          <input type="text" name="unit[]">
+        </div>
+      </div>
+
+      <div class="inline">
+        <div><input type="text" name="ingredient_name[]"></div>
+        <div><input type="text" name="quantity[]"></div>
+        <div><input type="text" name="unit[]"></div>
+      </div>
+
+      <div class="inline">
+        <div><input type="text" name="ingredient_name[]"></div>
+        <div><input type="text" name="quantity[]"></div>
+        <div><input type="text" name="unit[]"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Instructions (Steps)</h3>
+      <label for="instruction_1">Step 1:</label>
+      <textarea name="instructions[]" id="instruction_1" rows="2"></textarea>
+
+      <label for="instruction_2">Step 2:</label>
+      <textarea name="instructions[]" id="instruction_2" rows="2"></textarea>
+
+      <label for="instruction_3">Step 3:</label>
+      <textarea name="instructions[]" id="instruction_3" rows="2"></textarea>
+    </div>
+
+    <button type="submit">Submit Recipe</button>
+
+  </form>
+
+</body>
+</html>

@@ -52,7 +52,7 @@ app.put("/:id", async (req, res) => {
 });
 
 // Route to delete a recipe
-app.delete("//:id", async (req, res) => {
+app.delete("/:id", async (req, res) => {
   try {
     const deleted = await Recipe_Ingredients.destroy({ where: { id: req.params.id } });
     res.json(deleted);

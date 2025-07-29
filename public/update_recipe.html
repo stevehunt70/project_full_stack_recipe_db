@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head><title>Update Recipe</title></head>
+<body>
+  <h1>Update Recipe</h1>
+  <label>Select Recipe ID: <input id="recipe-id" type="number" /></label>
+  <button id="load">Load Recipe</button>
+  <form id="update-form" style="display:none;">
+    <label>Title: <input name="title" /></label><br />
+    <label>Description: <input name="description" /></label><br />
+    <label>Cooking Time (mins): <input name="cooking_time_minutes" type="number" /></label><br />
+    <label>Servings: <input name="servings" type="number" /></label><br />
+    <label>Category ID: <input name="category_id" type="number" /></label><br />
+    <button type="submit">Update</button>
+  </form>
+
+  <script>
+    const token = localStorage.getItem("token");
+    const loadBtn = document.getElementById("load");
+    const form = document.getElementById("update-form");
+    const recipeIdInput = document.getElementById("recipe-id");
+
+    loadBtn.addEventListener("click", async () => {
+      const id = recipeIdInput.value;
+      const res = await fetch(`/api/recipes/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (res.ok) {
+        form.style.display = "block";
+        form.title.value = data.title;
+        form.description.value = data.description;
+        form.cooking_time_minutes.value = data.cooking_time_minutes;
+        form.servings.value = data.servings;
+        form.category_id.value = data.category_id;
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = recipeIdInput.value;
+      const formData = new FormData(form);
+      await fetch(`/api/recipes/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+      });
+      window.location.href = "recipes.html";
+    });
+  </script>
+</body>
+</html>

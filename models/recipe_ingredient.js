@@ -1,17 +1,19 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Instructions extends Model {}
+class Recipe_Ingredient extends Model {}
 
-Instructions.init(
+
+Recipe_Ingredient.init(
   {
     recipe_id: DataTypes.INTEGER,
-    step_number: DataTypes.INTEGER,
-    instruction: DataTypes.STRING,
+    ingredient_id: DataTypes.INTEGER,
+    quantity: DataTypes.FLOAT,
+    unit: DataTypes.STRING,
   },
   {
     sequelize,
-    modelName: "instructions",
+    modelName: "recipe_ingredient",
     underscored: true,
     freezeTableName: true,
     timestamps: false,
@@ -19,4 +21,4 @@ Instructions.init(
 );
 
 // Export Post model
-module.exports = Instructions;
+module.exports = Recipe_Ingredient;
