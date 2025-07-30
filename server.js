@@ -1,20 +1,30 @@
-require('dotenv').config();
-
+const dotenv = require("dotenv");
 const express = require("express");
-const app = express();
-const routes = require("./routes");
-const sequelize = require("./config/connection");
+console.log("🚀 Server file loaded and running!");
+
 const path = require("path");
+const sequelize = require("./config/connection");
+const authRoutes = require("./routes/auth"); 
+const routes = require("./routes"); 
 
-app.use(express.static(path.join(__dirname, "public")));
+dotenv.config();
 
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("./api", routes);
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, "public")));
 
-sequelize.sync({ force: false }).then(() => {
-    app.listen(3000, () => {
-        console.log("Server is running on http://localhost:3000");
-    });
+// API Routes
+app.use("/api/auth", authRoutes);
+app.use("/api", routes);
+
+// Start server after DB sync
+sequelize.sync().then(() => {
+  console.log("Database synced.");
+  app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 });

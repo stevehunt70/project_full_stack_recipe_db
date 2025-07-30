@@ -1,28 +1,13 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
-
-class Ingredient extends Model {}
-
-Ingredient.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
+module.exports = (sequelize, DataTypes) => {
+  const Ingredient = sequelize.define('ingredient', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  },
-  {
-    sequelize,
-    modelName: "ingredient",
-    underscored: true,
-    freezeTableName: true,
+  }, {
+    tableName: 'ingredients', // Important if table is plural
     timestamps: false,
-  }
-);
+  });
 
-// Export Post model
-module.exports = Ingredient;
+  return Ingredient;
+};

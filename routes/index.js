@@ -1,8 +1,9 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 
 const authRoutes = require("./auth");
 const recipeRoutes = require("./recipes");
-const categoriesRoutes = require("./categories");
+const categoriesRoutes = require("./category");
 const ingredientsRoutes = require("./ingredients");
 const instructionsRoutes = require("./instructions");
 const recipeIngredientsRoutes = require("./recipe_ingredients");

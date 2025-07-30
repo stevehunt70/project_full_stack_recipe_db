@@ -1,22 +1,31 @@
-const { Model, DataTypes, Sequelize } = require("sequelize");
-const sequelize = require("../config/connection");
+// models/instructions.js
+module.exports = (sequelize, DataTypes) => {
+  const Instructions = sequelize.define(
+    "instruction",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      step_number: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      instruction: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      recipe_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "instructions",
+      timestamps: false,
+    }
+  );
 
-class Instructions extends Model {}
-
-Instructions.init(
-  {
-    recipe_id: DataTypes.INTEGER,
-    step_number: DataTypes.INTEGER,
-    instruction: DataTypes.STRING,
-  },
-  {
-    sequelize,
-    modelName: "instructions",
-    underscored: true,
-    freezeTableName: true,
-    timestamps: false,
-  }
-);
-
-// Export Post model
-module.exports = Instructions;
+  return Instructions;
+};

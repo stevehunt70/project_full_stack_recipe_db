@@ -4,39 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recipes</title>
+  <style>
+    .recipe-card {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      max-width: 600px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Recipes</h1>
-  <button onclick="location.href='add_recipe.html'">Add</button>
-  <button onclick="location.href='update_recipe.html'">Update</button>
-  <ul id="recipe-list"></ul>
-
-  <script>
-    const token = localStorage.getItem("token");
-    fetch("/api/recipes", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => res.json())
-      .then((recipes) => {
-        const list = document.getElementById("recipe-list");
-        recipes.forEach((r) => {
-          const li = document.createElement("li");
-          li.textContent = `${r.title} - ${r.description}`;
-
-          const delBtn = document.createElement("button");
-          delBtn.textContent = "Delete";
-          delBtn.onclick = async () => {
-            await fetch(`/api/recipes/${r.id}`, {
-              method: "DELETE",
-              headers: { Authorization: `Bearer ${token}` },
-            });
-            location.reload();
-          };
-
-          li.appendChild(delBtn);
-          list.appendChild(li);
-        });
-      });
-  </script>
+  <h1>All Recipes</h1>
+  <div id="recipe-container"></div>
+  <script src="/js/recipes.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 use recipe_db;
-
-INSERT INTO categories (name)
+-- data for category
+INSERT INTO category (name)
 VALUES
 ('Dessert'),
 ('Main Course'),
@@ -8,8 +8,48 @@ VALUES
 ('Appetizer'),
 ('Side Dish');
 
+-- data for ingredients
+INSERT INTO ingredient (name) VALUES
+    ('All-purpose flour'),
+    ('Granulated sugar'),
+    ('Cocoa powder'),
+    ('Baking powder'),
+    ('Salt'),
+    ('Eggs'),
+    ('Milk'),
+    ('Vegetable oil'),
+    ('Vanilla extract'),
+    ('Boiling water'),
+    ('Spaghetti'),             -- 11
+    ('Ground beef'),           -- 12
+    ('Onion'),                 -- 13
+    ('Garlic'),                -- 14
+    ('Tomato paste'),          -- 15
+    ('Crushed tomatoes'),      -- 16
+    ('Olive oil'),             -- 17
+    ('Black pepper'),          -- 18
+    ('Broccoli florets'),  -- 19
+    ('Carrot'),            -- 20
+    ('Bell pepper'),       -- 21
+    ('Soy sauce'),         -- 22
+    ('Cornstarch'),        -- 23
+    ('Ginger'),            -- 24
+    ('Sesame oil'),        -- 25
+    ('Baking soda'),      -- 26
+    ('Butter'),           -- 27
+    ('Maple syrup'),      -- 28
+    ('Romaine lettuce'),     -- 29
+    ('Croutons'),            -- 30
+    ('Parmesan cheese'),     -- 31
+    ('Caesar dressing'),     -- 32
+    ('Avocado'),           -- 33
+    ('Lime juice'),        -- 34
+    ('Red onion'),         -- 35
+    ('Cilantro'),          -- 36
+    ('Tomato');            -- 37
 
-INSERT INTO recipes (title, description, cooking_time_minutes, servings, category_id)
+-- data for recipe
+INSERT INTO recipe (title, description, cooking_time_minutes, servings, category_id)
 VALUES (
     'Chocolate Cake',
     'A rich and moist chocolate cake perfect for any occasion.',
@@ -53,49 +93,9 @@ VALUES (
     5
 );
 
-
-INSERT INTO ingredients (name) VALUES
-    ('All-purpose flour'),
-    ('Granulated sugar'),
-    ('Cocoa powder'),
-    ('Baking powder'),
-    ('Salt'),
-    ('Eggs'),
-    ('Milk'),
-    ('Vegetable oil'),
-    ('Vanilla extract'),
-    ('Boiling water'),
-    ('Spaghetti'),             -- 11
-    ('Ground beef'),           -- 12
-    ('Onion'),                 -- 13
-    ('Garlic'),                -- 14
-    ('Tomato paste'),          -- 15
-    ('Crushed tomatoes'),      -- 16
-    ('Olive oil'),             -- 17
-    ('Black pepper'),          -- 18
-    ('Broccoli florets'),  -- 19
-    ('Carrot'),            -- 20
-    ('Bell pepper'),       -- 21
-    ('Soy sauce'),         -- 22
-    ('Cornstarch'),        -- 23
-    ('Ginger'),            -- 24
-    ('Sesame oil'),        -- 25
-    ('Baking soda'),      -- 26
-    ('Butter'),           -- 27
-    ('Maple syrup'),      -- 28
-    ('Romaine lettuce'),     -- 29
-    ('Croutons'),            -- 30
-    ('Parmesan cheese'),     -- 31
-    ('Caesar dressing'),     -- 32
-    ('Avocado'),           -- 33
-    ('Lime juice'),        -- 34
-    ('Red onion'),         -- 35
-    ('Cilantro'),          -- 36
-    ('Tomato');            -- 37
-
-
+-- data for recipe_ingredients
 -- Assuming recipe_id = 1 and the ingredient IDs are in order (1 to 10)
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity, unit) VALUES
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id, quantity, unit) VALUES
     (1, 1, '1 and 3/4', 'cups'),
     (1, 2, '2', 'cups'),
     (1, 3, '3/4', 'cup'),
@@ -140,7 +140,7 @@ INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity, unit) VALUES
     (6, 37, '1', 'small, diced'),
     (6, 5, '1/2', 'teaspoon');
 
-
+-- data for instructions
 INSERT INTO instructions (recipe_id, step_number, instruction) VALUES
     (1, 1, 'Preheat oven to 350°F (175°C). Grease and flour two 9-inch round baking pans.'),
     (1, 2, 'In a large bowl, combine flour, sugar, cocoa powder, baking powder, and salt.'),

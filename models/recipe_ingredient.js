@@ -1,24 +1,25 @@
-const { Model, DataTypes, Sequelize } = require("sequelize");
-const sequelize = require("../config/connection");
+module.exports = (sequelize, DataTypes) => {
+  const RecipeIngredient = sequelize.define('RecipeIngredient', {
+    recipe_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    ingredient_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    quantity: {
+      type: DataTypes.STRING, // Use STRING for fractions like "1 and 3/4"
+      allowNull: true,
+    },
+    unit: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  }, {
+    tableName: 'recipe_ingredients',
+    timestamps: false
+  });
 
-class Recipe_Ingredient extends Model {}
-
-
-Recipe_Ingredient.init(
-  {
-    recipe_id: DataTypes.INTEGER,
-    ingredient_id: DataTypes.INTEGER,
-    quantity: DataTypes.FLOAT,
-    unit: DataTypes.STRING,
-  },
-  {
-    sequelize,
-    modelName: "recipe_ingredient",
-    underscored: true,
-    freezeTableName: true,
-    timestamps: false,
-  }
-);
-
-// Export Post model
-module.exports = Recipe_Ingredient;
+  return RecipeIngredient;
+};
