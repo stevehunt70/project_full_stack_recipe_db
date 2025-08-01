@@ -3,21 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/style.css">
   <title>Recipes</title>
-  <style>
-    .recipe-card {
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      max-width: 600px;
-    }
-  </style>
 </head>
 <body>
-  <h1>All Recipes</h1>
-  <div id="recipe-container"></div>
+  <div>
+    <h1>All Recipes</h1>
+  </div>
+  <div align="center">
+    <div class="recipe-button-card">
+      <div>
+        <a href="add_recipe.html"><button class="button-recipe">add recipe</button></a>
+        <a href="update_recipe.html"><button class="button-recipe">update recipe</button></a>
+        <a href="delete_recipe.html"><button class="button-recipe">delete recipe</button></a>
+        <a href="index.html"><button class="button-recipe">log out</button></a>
+      </div>
+    </div>
+  </div>
+  <div align="center">
+    <div id="recipe-container"></div>
+  </div>
+  
   <script src="/js/recipes.js"></script>
+
 </body>
 </html>

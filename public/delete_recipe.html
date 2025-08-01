@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Recipe</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+    <div>
+        <h1>Delete an Existing Recipe</h1>
+    </div>
+    <div align="center">
+        <div class="recipe-button-card">
+            <div>
+                <a href="recipes.html"><button class="button-recipe">recipe list</button></a>
+                <a href="add_recipe.html"><button class="button-recipe">add recipe</button></a>
+                <a href="update_recipe.html"><button class="button-recipe">update recipe</button></a>
+                <a href="index.html"><button class="button-recipe">log out</button></a>
+            </div>
+        </div>
+    </div>
+    <div align="center">
+        <div class="recipe-card">
+            <label for="recipe-select">Select Recipe:</label>
+            <select id="recipe-select">
+            <option>Loading...</option>
+            </select>
+            <br><br>
+            <button id="delete-button">Delete Recipe</button>
+            <p id="message"></p>
+        </div>
+    </div>
+
+  <script src="./js/delete_recipe.js"></script>
+</body>
+</html>

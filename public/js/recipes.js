@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }).join("");
 
       const instructionsList = recipe.instructions?.map((step) => {
-        return `<li>Step ${step.step_number}: ${step.instruction}</li>`;
+        return `<li>${step.instruction}</li>`;
       }).join("");
 
       card.innerHTML = `
@@ -49,12 +49,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         <p><strong>Servings:</strong> ${recipe.servings}</p>
 
         <h4>Ingredients:</h4>
-        <ul>
+        <ul align="left">
           ${ingredientsList}
         </ul>
 
         <h4>Instructions:</h4>
-        <ol>
+        <ol align="left">
           ${instructionsList}
         </ol>
       `;

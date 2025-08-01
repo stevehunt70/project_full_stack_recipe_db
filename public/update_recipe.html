@@ -1,55 +1,58 @@
 <!DOCTYPE html>
-<html>
-<head><title>Update Recipe</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="./assets/style.css" />
+  <title>Update Recipe</title>
+</head>
 <body>
-  <h1>Update Recipe</h1>
-  <label>Select Recipe ID: <input id="recipe-id" type="number" /></label>
-  <button id="load">Load Recipe</button>
-  <form id="update-form" style="display:none;">
-    <label>Title: <input name="title" /></label><br />
-    <label>Description: <input name="description" /></label><br />
-    <label>Cooking Time (mins): <input name="cooking_time_minutes" type="number" /></label><br />
-    <label>Servings: <input name="servings" type="number" /></label><br />
-    <label>Category ID: <input name="category_id" type="number" /></label><br />
-    <button type="submit">Update</button>
-  </form>
+  <div>
+    <h1>Update an Existing Recipe</h1>
+  </div>
+  <div align="center">
+    <div class="recipe-button-card">
+      <div>
+        <a href="recipes.html"><button class="button-recipe">recipe list</button></a>
+        <a href="add_recipe.html"><button class="button-recipe">add recipe</button></a>
+        <a href="delete_recipe.html"><button class="button-recipe">delete recipe</button></a>
+        <a href="index.html"><button class="button-recipe">log out</button></a>
+      </div>
+    </div>
+  </div>
+  <div align="center">
+    <div class="recipe-card">
+      <label for="recipe-select" font-size="12px">Select Recipe:</label>
+      <select id="recipe-select" class="select-recipe-dropdown"></select>
 
-  <script>
-    const token = localStorage.getItem("token");
-    const loadBtn = document.getElementById("load");
-    const form = document.getElementById("update-form");
-    const recipeIdInput = document.getElementById("recipe-id");
+      <form id="update-recipe-form">
+        <label>Title:</label>
+        <input type="text" name="title" required><br>
 
-    loadBtn.addEventListener("click", async () => {
-      const id = recipeIdInput.value;
-      const res = await fetch(`/api/recipes/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      if (res.ok) {
-        form.style.display = "block";
-        form.title.value = data.title;
-        form.description.value = data.description;
-        form.cooking_time_minutes.value = data.cooking_time_minutes;
-        form.servings.value = data.servings;
-        form.category_id.value = data.category_id;
-      }
-    });
+        <label>Description:</label>
+        <textarea name="description" required></textarea><br>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const id = recipeIdInput.value;
-      const formData = new FormData(form);
-      await fetch(`/api/recipes/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(Object.fromEntries(formData.entries())),
-      });
-      window.location.href = "recipes.html";
-    });
-  </script>
+        <label>Cooking Time (minutes):</label>
+        <input type="number" name="cooking_time_minutes" required><br>
+
+        <label>Servings:</label>
+        <input type="number" name="servings" required><br>
+
+        <label>Category:</label>
+        <select name="category_id" id="category-select" required></select><br>
+
+        <h3>Instructions</h3>
+        <div id="instructions"></div>
+
+        <h3>Ingredients</h3>
+        <div id="ingredients"></div>
+
+        <button type="submit">Update Recipe</button>
+        <p id="message"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="./js/update_recipe.js"></script>
 </body>
 </html>

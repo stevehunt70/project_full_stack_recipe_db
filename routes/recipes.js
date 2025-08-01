@@ -47,23 +47,6 @@ router.get("/:id", auth, async (req, res) => {
   }
 });
 
-// Add new recipe
-router.post("/", auth, async (req, res) => {
-  try {
-    const { title, description, cooking_time_minutes, servings, category_id, created_at } = req.body;
-    const recipe = await Recipe.create({
-      title,
-      description,
-      cooking_time_minutes,
-      servings,
-      category_id,
-      created_at,
-    });
-    res.status(201).json(recipe);
-  } catch (error) {
-    res.status(500).json({ message: "Error adding recipe", error });
-  }
-});
 
 // Update recipe
 router.put("/:id", auth, async (req, res) => {
@@ -93,23 +76,62 @@ router.delete("/:id", auth, async (req, res) => {
   }
 });
 
-// Test join for recipe with ingredients
-router.get("/test-join", async (req, res) => {
+// Add new recipe
+router.post("/recipes/add", auth, async (req, res) => {
   try {
-    const recipe = await Recipe.findOne({
-      where: { id: 1 },
-      include: [
-        {
-          model: Ingredient,
-          as: "ingredients",
-          through: { attributes: ["quantity", "unit"] },
-        },
-      ],
+    const {
+      title,
+      description,
+      cooking_time_minutes,
+      servings,
+      category_id,
+      instructions,
+      ingredients
+    } = req.body;
+
+    // Create the recipe
+    const newRecipe = await Recipe.create({
+      title,
+      description,
+      cooking_time_minutes,
+      servings,
+      category_id,
+      user_id: req.user.id,
     });
 
-    res.json(recipe);
-  } catch (err) {
-    res.status(500).json({ error: "Join test failed" });
+    // Add instructions
+    if (instructions && Array.isArray(instructions)) {
+      for (const instr of instructions) {
+        await Instructions.create({
+          step_number: instr.step_number,
+          instruction: instr.instruction,
+          recipe_id: newRecipe.id,
+        });
+      }
+    }
+
+    // Add ingredients
+    if (ingredients && Array.isArray(ingredients)) {
+      for (const ing of ingredients) {
+        // Check if ingredient already exists
+        let [ingredient] = await Ingredient.findOrCreate({
+          where: { name: ing.name.trim() }
+        });
+
+        await RecipeIngredient.create({
+          recipe_id: newRecipe.id,
+          ingredient_id: ingredient.id,
+          quantity: ing.quantity,
+          unit: ing.unit,
+        });
+      }
+    }
+
+    res.json({ message: "Recipe added successfully", recipeId: recipe.id });
+
+  } catch (error) {
+    console.error("Error adding recipe:", error);
+    res.status(500).json({ error: "Failed to add recipe" });
   }
 });
 

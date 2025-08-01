@@ -1,33 +1,55 @@
 <!DOCTYPE html>
-<html>
-<head><title>Add Recipe</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="./assets/style.css">
+  <title>Add Recipe</title>
+</head>
 <body>
-  <h1>Add Recipe</h1>
-  <form id="add-form">
-    <label>Title: <input name="title" /></label><br />
-    <label>Description: <input name="description" /></label><br />
-    <label>Cooking Time (mins): <input name="cooking_time_minutes" type="number" /></label><br />
-    <label>Servings: <input name="servings" type="number" /></label><br />
-    <label>Category ID: <input name="category_id" type="number" /></label><br />
-    <button type="submit">Add</button>
-  </form>
+  <div>
+    <h1>Add a New Recipe</h1>
+  </div>
+  <div align="center">
+    <div class="recipe-button-card">
+      <div>
+        <a href="recipes.html"><button class="button-recipe">recipe list</button></a>
+        <a href="update_recipe.html"><button class="button-recipe">update recipe</button></a>
+        <a href="delete_recipe.html"><button class="button-recipe">delete recipe</button></a>
+        <a href="index.html"><button class="button-recipe">log out</button></a>
+      </div>
+    </div>
+  </div>
+  <div align="center">
+      <div class="recipe-card">
+        <form id="add-recipe-form">
+          <label>Title:</label>
+          <input type="text" name="title" required><br>
 
-  <script>
-    const form = document.getElementById("add-form");
-    const token = localStorage.getItem("token");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      await fetch("/api/recipes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(Object.fromEntries(formData.entries())),
-      });
-      window.location.href = "recipes.html";
-    });
-  </script>
+          <label>Description:</label>
+          <textarea name="description" required></textarea><br>
+
+          <label>Cooking Time (minutes):</label>
+          <input type="number" name="cooking_time_minutes" required><br>
+
+          <label>Servings:</label>
+          <input type="number" name="servings" required><br>
+
+          <label>Category:</label>
+          <select name="category_id" id="category-select" required></select><br>
+
+          <h3>Ingredients</h3>
+          <div id="ingredients"></div>
+
+          <h3>Instructions (max 10)</h3>
+          <div id="instructions"></div>
+
+          <button type="submit">Add Recipe</button>
+          <p id="message"></p>
+        </form>
+      </div>
+  </div>
+
+  <script src="./js/add_recipe.js"></script>
 </body>
 </html>

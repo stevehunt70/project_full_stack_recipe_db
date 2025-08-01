@@ -1,0 +1,7 @@
+express
+sequelize
+jsonwebtoken
+dotenv
+bcrypt
+mysql
+nodemon
