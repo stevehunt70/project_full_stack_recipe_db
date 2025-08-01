@@ -46,5 +46,5 @@ Two main calls one for the recipe and one for the category. Everything else is l
 This will verify the token used when logging in to the recipe website in oreder to retrieve the data
 
 ### Links
-GitHub: https://github.com/stevehunt70/project_full_stack_recipe_db.git
-YouTube: 
+  - GitHub: https://github.com/stevehunt70/project_full_stack_recipe_db.git
+  - YouTube: 

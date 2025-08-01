@@ -9,7 +9,7 @@ VALUES
 ('Side Dish');
 
 -- data for ingredients
-INSERT INTO ingredient (name) VALUES
+INSERT INTO ingredients (name) VALUES
     ('All-purpose flour'),
     ('Granulated sugar'),
     ('Cocoa powder'),
@@ -95,7 +95,7 @@ VALUES (
 
 -- data for recipe_ingredients
 -- Assuming recipe_id = 1 and the ingredient IDs are in order (1 to 10)
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id, quantity, unit) VALUES
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity, unit) VALUES
     (1, 1, '1 and 3/4', 'cups'),
     (1, 2, '2', 'cups'),
     (1, 3, '3/4', 'cup'),
@@ -122,7 +122,6 @@ INSERT INTO recipe_ingredient (recipe_id, ingredient_id, quantity, unit) VALUES
     (3, 23, '1', 'teaspoon'),
     (3, 24, '1', 'teaspoon, grated'),
     (3, 25, '1', 'tablespoon'),
-    -- Reuse flour (1), milk (7), eggs (6), sugar (2)(4, 1, '1 and 1/2', 'cups'),
     (4, 2, '2', 'tablespoons'),
     (4, 26, '1', 'teaspoon'),
     (4, 6, '1', 'large'),
@@ -170,4 +169,4 @@ INSERT INTO instructions (recipe_id, step_number, instruction) VALUES
     (5, 3, 'Serve immediately.'),
     (6, 1, 'Mash avocados in a bowl.'),
     (6, 2, 'Add lime juice, onion, cilantro, tomato, and salt.'),
-    (6, 3, 'Mix well and serve fresh.');  
+    (6, 3, 'Mix well and serve fresh.');

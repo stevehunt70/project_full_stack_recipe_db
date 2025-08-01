@@ -13,7 +13,7 @@ CREATE TABLE category (
 );
 
 -- Table: Ingredient
-CREATE TABLE ingredient (
+CREATE TABLE ingredients (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE
 );
@@ -31,7 +31,7 @@ CREATE TABLE recipe (
 );
 
 -- Table: Recipe Ingredients (many-to-many relationship)
-CREATE TABLE recipe_ingredient (
+CREATE TABLE recipe_ingredients (
     recipe_id INT,
     ingredient_id INT,
     quantity VARCHAR(50),
