@@ -47,4 +47,4 @@ This will verify the token used when logging in to the recipe website in oreder 
 
 ### Links
   - GitHub: https://github.com/stevehunt70/project_full_stack_recipe_db.git
-  - YouTube: 
+  - YouTube: https://youtu.be/7xcEohlcpLw
